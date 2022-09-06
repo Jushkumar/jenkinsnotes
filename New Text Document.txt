@@ -1,0 +1,188 @@
+DECLARATIVE PIPELINE
+
+
+pipeline
+	{
+	agent any
+	Stages
+	{
+		stage (Continuous Download)
+		{
+			Steps
+			{	
+				groovy code for continuous download from git
+			}
+		}
+		
+		stage (Continuous Build)
+		{
+			Steps
+			{	
+				groovy code for creating artifact using maven
+			}
+		}
+		stage (Continuous Deployment)
+		{
+			Steps
+			{	
+				groovy code for deploying artifact in QA server
+			}
+		}
+		stage (Continuous Testing)
+		{
+			Steps
+			{	
+				groovy code for download testing code and testing the code
+			}
+		}
+		stage (Continuous Delivery)
+		{
+			Steps
+			{	
+				groovy code for deployment into prod server
+			}
+		}
+	}
+******************************************************************************************
+SCRIPTED PIPELINE
+
+
+node (node name)
+{
+	stage (Continuous Download)
+		{
+		groovy code for continuous download from git
+		}
+	stage (Continuous Build)
+		{
+		groovy code for creating artifact using maven
+		}
+	stage (Continuous Deployment)
+		{
+		groovy code for deploying artifact in QA server
+		}
+	stage (Continuous Testing)
+		{
+		groovy code for download testing code and testing the code
+		}
+	stage (Continuous Delivery)
+		{
+		groovy code for deployment into prod server
+		}
+}
+
+
+*******************************************************************************
+Jenkins Email notifications
+Access jenkins from web browser
+Navigations
+	Manage jenkins
+	Configure system
+	Email notification
+		smtp.gmail.com
+	advanced
+		use SMTP authentication
+			jushkumars@gmail.com
+			password
+	use ssl
+	smtp port number  465
+	test configuration
+	test email recipeint
+		jushkumars@gmail.com
+	
+***************************************
+jenkins configuration page 
+select postbuild actions
+	email notifications
+		email ids for which notifications are sent
+***************************************
+pipeline
+{
+	agent any
+	stages
+	{	
+		stage(********)
+		{
+			steps
+			{
+				Groovy code
+			}
+		}
+	}
+	post
+	{
+		success
+		{
+		
+		}
+		failure
+		{
+		
+		}
+		abort
+		{
+		
+		}
+		always
+		{
+		
+		}
+	}
+
+}
+************************************************
+Exception Handling
+if an error occurs we have to overcome the error
+
+try
+{
+
+}
+catch(Exception e)
+{
+
+}
+*************************************************
+Declarative pipeline using exception handling
+pipeline
+{
+	agent any
+	stages
+	{
+		stage
+		{
+			steps
+			{
+				script
+				{
+					try
+					{
+						groovy script for this stage
+					}
+					catch(Exception e)
+					{
+						groovy code for email notification for respective team
+						exit()
+					}
+				}
+			}
+		}
+	}
+}
+**************************************************************************
+node('built-in')
+{
+	stage(******)
+	{
+		try
+		{
+			groovy code for the stage
+		}
+		catch (exception e1)
+		{
+			groovy code for email notifications
+			exit()
+		}
+	}
+}
+*********************************************************************************
